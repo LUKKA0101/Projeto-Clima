@@ -17,6 +17,7 @@ function mostrarBody() {
         body.style.backgroundImage = 'url(image/tarde.jpg)';
         titulo.innerHTML = '<h1 style="color: black">Olá, Boa Tarde!</h1>';
         document.querySelector('#searchInput').style.color = '#000'
+        document.querySelector('button').style.color = '#000'
         document.querySelector('h3').style.color = 'black';
     } else {
         body.style.backgroundImage = 'url(image/noite.jpg)';
@@ -32,6 +33,7 @@ form.addEventListener('submit', async (event) => {
     const input = document.querySelector('#searchInput').value;
 
     if(input !== '') {
+        clearInfo()
         showWarning('Carregando...')
         
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(input)}&appid=7fece14b19af8757bf097761d953de1c&units=metric&lang=pt_br`;
@@ -51,40 +53,37 @@ form.addEventListener('submit', async (event) => {
                 tempMax: json.main.temp_max
             })
         } else {
+            clearInfo()
             showWarning('Localização não encotrada!')   
         }
+    } else {
+        clearInfo()
     }
 });
 
 function showInfo (json) {
     showWarning('');
-
-    const resultado = document.querySelector('.resultado');
-    const nomeDaCidade = document.querySelector('.nome-da-cidade');
-    const temperatura = document.querySelector('.tempInfo');
-    const vento = document.querySelector('.ventoInfo');
-    const imagemDaTemperatura = document.querySelector('.temp img');
-    const ventoPonteiro = document.querySelector('.ventoPonto');
-    const sensacaoTermica = document.querySelector('.sensacao-termica');
-    const temperaturaMinima = document.querySelector('.temp-minima');
-    const temperaturaMaxima = document.querySelector('.temp-maxima');
     
+    document.querySelector('.resultado').style.display = 'block';
+    document.querySelector('.nome-da-cidade').innerHTML = `${json.name}, ${json.country}`;
+    document.querySelector('.tempInfo').innerHTML = `${json.temp} <sup>ºC</sup>`;
+    document.querySelector('.ventoInfo').innerHTML = `${json.windSpped} <span>km/h</span>`;
 
-    resultado.style.display = 'block';
-    nomeDaCidade.innerHTML = `${json.name}, ${json.country}`;
-    temperatura.innerHTML = `${json.temp} <sup>ºC</sup>`;
-    vento.innerHTML = `${json.windSpped} <span>km/h</span>`;
-    sensacaoTermica.innerHTML = `Sensação térmica:<br>${json.sensacaoTermica}°C`;
-    temperaturaMinima.innerHTML = `Min:<br>${json.tempMin}°C`;
-    temperaturaMaxima.innerHTML = `Max:<br>${json.tempMax}°C`;
+    document.querySelector('.sensacao-termica').innerHTML = `Sensação térmica:<br>${json.sensacaoTermica}°C`;
+    document.querySelector('.temp-minima').innerHTML = `Min:<br>${json.tempMin}°C`;
+    document.querySelector('.temp-maxima').innerHTML = `Max:<br>${json.tempMax}°C`;
 
+    document.querySelector('.temp img').setAttribute('src', `http://openweathermap.org/img/wn/${json.tempIcon}@2x.png`);
 
-    imagemDaTemperatura.setAttribute('src', `http://openweathermap.org/img/wn/${json.tempIcon}@2x.png`);
-
-    ventoPonteiro.style.transform = `rotate(${json.windAngle - 90}deg)`;
+    document.querySelector('.ventoPonto').style.transform = `rotate(${json.windAngle - 90}deg)`;
 }
 
 
 function showWarning(msg) {
     document.querySelector('.aviso').innerHTML = msg
+}
+
+function clearInfo () {
+    showWarning('')
+    document.querySelector('.resultado').style.display = 'none'
 }
