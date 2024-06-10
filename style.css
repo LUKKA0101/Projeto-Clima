@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-do-titulo: "Montserrat", sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 10px;
+}
+
+h1 {
+    font-family: var(--font-do-titulo);
+    color: #FFF;
+    font-size: 4.2rem;
+    font-weight: 300;
+    margin: 10px 0;
+    text-align: center;
+}
+
+h3 {
+    color: #FFF;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.busca {
+    display: flex;
+    width: 100%;
+    max-width: 300px;
+}
+
+#searchInput {
+    padding: 10px;
+    font-size: 20px;
+    border-width: 2px;
+    border-radius: 30px;
+    border-color: #000;
+    color: #FFF;
+    background-color: transparent;
+    flex: 1;
+}
+
+#searchInput::placeholder {
+    color: #000;
+}
+
+button {
+    padding: 10px 25px;
+    font-size: 15px;
+    border: 0;
+    background-color: #000;
+    color: #FFF;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.resultado {
+    width: 100%;
+    max-width: 300px;
+    display: none;
+    border: 1px dotted #FFF;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nome-da-cidade {
+    width: 100%;
+    color: #FFF;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+.info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.temp,
+.vento {
+    text-align: center;
+}
+
+.tempTitulo,
+.ventoTitulo {
+    color: #FFF;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.tempInfo,
+.ventoInfo {
+    color: #FFF;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.tempInfo sup {
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.ventoInfo span {
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.ventoArea {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #FFF;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 20px;
+    padding-left: 25px;
+    padding-top: 25px;
+}
+
+.ventoPonto {
+    width: 15px;
+    height: 1px;
+    background-color: #FFF;
+    transform-origin: left;
+}
+
+.info-extra {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    color: #FFF;
+    font-size: 12px;
+    flex-wrap: wrap;
+}
+
+.aviso {
+    color: #FFF;
+    padding-top: 20px;
+    text-align: center;
+}
+
+footer {
+    margin-top: 20px;
+    color: black;
+    font-size: 13px;
+    text-align: center;
+}
+
+footer a {
+    color: black;
+}
+
+
+@media (min-width: 768px) {
+    .info {
+        flex-direction: row;
+    }
+}
